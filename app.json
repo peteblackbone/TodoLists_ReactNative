@@ -1,0 +1,12 @@
+{
+  "name": "todolists",
+  "displayName": "todolists",
+  "expo": {
+    "name": "todolists",
+    "slug": "todolists",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
