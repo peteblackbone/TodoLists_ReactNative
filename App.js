@@ -8,13 +8,10 @@ import {
   Text,
   View,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
 import { Card } from "./src/components/Card";
-import {
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 export default class App extends Component {
   state = {
     modalVisible: false,
@@ -46,6 +43,13 @@ export default class App extends Component {
     });
     this.setModalVisible(!this.state.modalVisible);
   };
+  cancle = () =>{
+    this.setState({
+      newTitle: "",
+      newContent: "",
+    });
+    this.setModalVisible(!this.state.modalVisible);
+  }
   delete = (id) => {
     this.state.Tasks.splice(
       this.state.Tasks.findIndex((task) => task.id == id),
@@ -114,15 +118,24 @@ export default class App extends Component {
                   ></TextInput>
                 </KeyboardAvoidingView>
               </View>
-
-              <TouchableOpacity
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                onPress={() => {
-                  this.AddTask();
-                }}
-              >
-                <Text style={styles.textStyle}>Save</Text>
-              </TouchableOpacity>
+              <View style={{flexDirection:"row",marginLeft:"59%"}}>
+                <TouchableOpacity
+                  style={{ ...styles.openButton, backgroundColor: "#2196F3",marginRight:10 }}
+                  onPress={() => {
+                    this.AddTask();
+                  }}
+                >
+                  <Text style={styles.textStyle}>Save</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                  onPress={() => {
+                    this.cancle();
+                  }}
+                >
+                  <Text style={styles.textStyle}>Cancle</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </Modal>
@@ -197,7 +210,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: "95%",
-    height: "40%",
+    height: 220,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
